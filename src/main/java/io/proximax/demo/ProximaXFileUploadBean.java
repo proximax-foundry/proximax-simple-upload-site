@@ -50,7 +50,7 @@ public class ProximaXFileUploadBean {
         LoadedFile loadedFile = new LoadedFile();
         loadedFile.setFileLink("https://testnet.gateway.proximax.io/xpxfs/" + result.getNemHash());
         loadedFile.setFileName(e.getFile().getFileName());
-        loadedFile.setNemLink("http://explorer.nemchina.com/#/s_tx?hash=" + result.getNemHash());
+        loadedFile.setNemLink("http://104.128.226.60:7890/transaction/get?hash=" + result.getNemHash());
         this.listOfFiles.add(loadedFile);
         this.linkToFile = result.getNemHash();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
