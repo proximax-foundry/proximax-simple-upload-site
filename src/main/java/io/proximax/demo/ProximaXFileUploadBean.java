@@ -14,7 +14,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
-@ManagedBean
+@ManagedBean(name = "fileUploadBean")
 @SessionScoped
 public class ProximaXFileUploadBean {
 

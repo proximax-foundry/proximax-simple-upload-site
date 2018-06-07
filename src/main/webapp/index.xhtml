@@ -19,17 +19,17 @@
          
             <h:form enctype="multipart/form-data" style="width:100%;">
                 <p:growl id="msg"  sticky="true"  ></p:growl>
-                <p:fileUpload value="#{fileUploadManagedBean.file}" skinSimple="true"
+                <p:fileUpload value="#{fileUploadBean.file}" skinSimple="true"
                                                 mode="advanced" multiple="true"
                                                 sizeLimit="1000000000" auto="true"
-                                                fileUploadListener="#{fileUploadManagedBean.fileUploadListener}" 
+                                                fileUploadListener="#{fileUploadBean.fileUploadListener}" 
                                                 update="tb" dragDropSupport="true">
 
                 </p:fileUpload>
                 
             </h:form>
          <p:outputLabel style="color:black;"><b>Please wait for the NEM Transaction to be confirmed.</b></p:outputLabel>  
-         <p:dataTable id="tb" var="file" value="#{fileUploadManagedBean.listOfFiles}">
+         <p:dataTable id="tb" var="file" value="#{fileUploadBean.listOfFiles}">
                <p:column headerText="Filename">
                    <h:outputText value="#{file.fileName}" />
                </p:column>
