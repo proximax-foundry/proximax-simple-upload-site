@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/template/common.xhtml">
+            <ui:define name="content">
+                <br/>
+                 <p:fieldset legend="Search" style="margin-bottom:20px">
+                   <h:panelGrid columns="2" cellpadding="5">
+                       <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                       <p:outputLabel>NEM Testnet Public Key used: 36e6fbc1cc5c3ef49d313721650b98d7d7d126a4f731d70071f4f3b4798cdc85</p:outputLabel>
+                   <br/>
+                   <p:outputLabel style="color:red;">This will search all the files associated to the public key above</p:outputLabel>  
+                   <br/>
+                   </h:panelGrid>
+                 </p:fieldset>
+                
+                
+                <p:dataTable var="car" value="#{dtBasicView.cars}">
+    <p:column headerText="Id">
+        <h:outputText value="#{car.id}" />
+    </p:column>
+ 
+    <p:column headerText="Year">
+        <h:outputText value="#{car.year}" />
+    </p:column>
+ 
+    <p:column headerText="Brand">
+        <h:outputText value="#{car.brand}" />
+    </p:column>
+ 
+    <p:column headerText="Color">
+        <h:outputText value="#{car.color}" />
+    </p:column>
+</p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

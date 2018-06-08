@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <p:tabMenu activeIndex="#{param.i}" >
+        <p:menuitem value="Upload" outcome="/faces/pages/upload.xhtml?i=0" icon="ui-icon-document">
+
+        </p:menuitem>
+        <p:menuitem value="Upload with Password" outcome="/faces/pages/uploadwpass.xhtml?i=1" icon="ui-icon-document">
+
+        </p:menuitem>
+        <p:menuitem value="Search" outcome="/faces/pages/search.xhtml?i=2" icon="ui-icon-search">
+
+        </p:menuitem>
+    </p:tabMenu>
+</html>
