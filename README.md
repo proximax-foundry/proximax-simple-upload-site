@@ -1,6 +1,13 @@
 # Simple File Uploader for ProximaX
 Just a simple upload site for short demos
 
+## Demonstrates what?
++ Uploading of files 
++ NEM Hash associated with the files uploaded
++ ProximaX Gateways
++ Searching files by name, keywords and metadata
++ Download files
+
 ## Steps to run
 Step 1: Run war on any EE reference implementation compliant container 
 Step 2: Go to http://host:port/xpxupload/faces/index.html
