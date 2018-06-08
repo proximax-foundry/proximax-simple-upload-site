@@ -2,11 +2,11 @@
 Just a simple upload site for short demos
 
 ## Demonstrates what?
-+ Uploading of files 
++ Uploading public and password-secure files
++ Uploading nem keys protected files (Note: Never send or give your private keys - this is just a demonstration)
++ Downloading public and password-secured files
++ Searching files by name
 + NEM Hash associated with the files uploaded
-+ ProximaX Gateways
-+ Searching files by name, keywords and metadata
-+ Download files
 
 ## Steps to run
 + Step 1: Run war on any EE reference implementation compliant container 
@@ -17,7 +17,6 @@ Just a simple upload site for short demos
 ![!fromProx](https://testnet.gateway.proximax.io/xpxfs/8980c6fe1749edec43eaf99cff420596be40b6a4014c306fcb4b21089bdd724c "aa")
 ![!fromProx](https://testnet.gateway.proximax.io/xpxfs/85a393e4b9026487358fc7ba91806f8f650a7d30e49c7bbcac18600ebdc3dddb "aa")
 
-## More features
-+ Secure uploading using Secure Privacy Strategy
-+ Search
-+ Secure Download
+## More demos
++ Searching by keyword
++ Searching by metadata
