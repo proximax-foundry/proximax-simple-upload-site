@@ -15,27 +15,24 @@
                    <br/>
                    <p:outputLabel style="color:red;">This will search all the files associated to the public key above</p:outputLabel>  
                    <br/>
+                   
+                   <h:form>
+                       <p:growl id="growl" life="2000" />
+                       <h:inputText value="#{searchBean.name}"></h:inputText>
+                       <p:commandButton value="Ajax Submit" id="ajax" update="tbres" actionListener="#{searchBean.searchByName()}" styleClass="ui-priority-primary" />
+                   </h:form>
                    </h:panelGrid>
                  </p:fieldset>
                 
                 
-                <p:dataTable var="car" value="#{dtBasicView.cars}">
-    <p:column headerText="Id">
-        <h:outputText value="#{car.id}" />
-    </p:column>
- 
-    <p:column headerText="Year">
-        <h:outputText value="#{car.year}" />
-    </p:column>
- 
-    <p:column headerText="Brand">
-        <h:outputText value="#{car.brand}" />
-    </p:column>
- 
-    <p:column headerText="Color">
-        <h:outputText value="#{car.color}" />
-    </p:column>
-</p:dataTable>
+                <p:dataTable id="tbres" var="result" value="#{searchBean.result}">
+                    <p:column headerText="Name">
+                        <h:outputText value="#{result.name}" />
+                    </p:column>
+                     <p:column headerText="Link">
+                        <h:outputText value="#{result.nemHash}" />
+                    </p:column>
+                </p:dataTable>
             </ui:define>
         </ui:composition>
     </h:body>
