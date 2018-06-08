@@ -7,6 +7,8 @@ import io.nem.xpx.facade.upload.UploadException;
 import io.nem.xpx.facade.upload.UploadResult;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -19,23 +21,19 @@ import org.primefaces.model.UploadedFile;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Alvin
  */
-
 @ManagedBean(name = "fileUploadWithPasswordBean")
 @SessionScoped
 public class ProximaXFileUploadWithPasswordBean {
-    
+
     private UploadedFile file;
 
     private List<LoadedFile> listOfFiles = new ArrayList<LoadedFile>();
     private String linkToFile;
     private String password;
-    
-    
 
     public UploadedFile getFile() {
         return file;
@@ -50,7 +48,6 @@ public class ProximaXFileUploadWithPasswordBean {
 
         // Get uploaded file from the FileUploadEvent
         this.setFile(e.getFile());
-        System.out.println("Uploaded File Name Is :: " + getFile().getFileName() + " :: Uploaded File Size :: " + getFile().getSize());
 
         UploadBinaryParameter parameter = UploadBinaryParameter.create()
                 .senderPrivateKey("deaae199f8e511ec51eb0046cf8d78dc481e20a340d003bbfcc3a66623d09763")
@@ -58,7 +55,7 @@ public class ProximaXFileUploadWithPasswordBean {
                 .data(e.getFile().getContents())
                 .contentType(e.getFile().getContentType())
                 .name(e.getFile().getFileName())
-                .securedWithPasswordPrivacyStrategy("AAAaaaaaaaAAAaaaaaaaAAAaaaaaaaAAAaaaaaaaAAAaaaaaaaAAAaaaaaaaAAAaaaaaaaAAAaaaaaaa")
+                .securedWithPasswordPrivacyStrategy(this.password)
                 .build();
 
         final UploadResult result = upload.uploadBinary(parameter);
@@ -162,5 +159,22 @@ public class ProximaXFileUploadWithPasswordBean {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @PostConstruct
+    public void post() {
+        this.password = randomString(50);
+    }
+
+    private String randomString(final int length) {
+        char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        StringBuilder sb = new StringBuilder(length);
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            char c = chars[random.nextInt(chars.length)];
+            sb.append(c);
+        }
+        String output = sb.toString();
+        return output;
     }
 }

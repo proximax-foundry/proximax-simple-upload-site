@@ -19,7 +19,7 @@
                    <h:form>
                        <p:growl id="growl" life="2000" />
                        <h:inputText value="#{searchBean.name}"></h:inputText>
-                       <p:commandButton value="Ajax Submit" id="ajax" update="tbres" actionListener="#{searchBean.searchByName()}" styleClass="ui-priority-primary" />
+                       <p:commandButton value="Search" id="ajax" update="tbres" actionListener="#{searchBean.searchByName()}" styleClass="ui-priority-primary" />
                    </h:form>
                    </h:panelGrid>
                  </p:fieldset>
