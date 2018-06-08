@@ -48,7 +48,7 @@ public class ProximaXFileDownloadWithPasswordBean {
     public String downloadFile() throws DownloadException,IOException {
 
         Download download = new Download(new RemotePeerConnection("https://testnet.gateway.proximax.io"));
-        DownloadResult result = download.downloadBinary(DownloadParameter.create().nemHash(this.getHash()).securedWithPasswordPrivacyStrategy("AAAaaaaaaaAAAaaaaaaaAAAaaaaaaaAAAaaaaaaaAAAaaaaaaaAAAaaaaaaaAAAaaaaaaaAAAaaaaaaa").build());
+        DownloadResult result = download.downloadBinary(DownloadParameter.create().nemHash(this.getHash()).securedWithPasswordPrivacyStrategy(this.password).build());
             
         final FacesContext fc = FacesContext.getCurrentInstance();
         final ExternalContext externalContext = fc.getExternalContext();
