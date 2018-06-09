@@ -5,9 +5,14 @@ import io.nem.xpx.facade.upload.Upload;
 import io.nem.xpx.facade.upload.UploadBinaryParameter;
 import io.nem.xpx.facade.upload.UploadException;
 import io.nem.xpx.facade.upload.UploadResult;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -43,6 +48,31 @@ public class ProximaXFileUploadWithPasswordBean {
         this.file = file;
     }
 
+    public void check(String hash) {
+        //  check if hash is confirmed.
+        final HttpURLConnection connection;
+        try {
+            connection = (HttpURLConnection) new URL("http://104.128.226.60:7890/transaction/get?hash=" +hash).openConnection();
+            connection.connect();
+            if(connection.getResponseCode() != 200) {
+                //  do nothing
+            }else {
+                
+                for(int i=0;i<this.listOfFiles.size();i++) {
+                    if(this.listOfFiles.get(i).getHash().toLowerCase().equals(hash.toLowerCase())) {
+                        System.out.println(this.listOfFiles.get(i).getHash());
+                        this.listOfFiles.get(i).setIsConfirmed(true);
+                        this.listOfFiles.get(i).setFileLink("https://testnet.gateway.proximax.io/xpxfs/"+hash);
+                        return;
+                    }
+                }
+            }
+        } catch (IOException ex) {
+            //Logger.getLogger(ProximaXFileUploadBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
     public void fileUploadListener(FileUploadEvent e) throws UploadException {
         Upload upload = new Upload(new RemotePeerConnection("https://testnet.gateway.proximax.io"));
 
@@ -60,8 +90,9 @@ public class ProximaXFileUploadWithPasswordBean {
 
         final UploadResult result = upload.uploadBinary(parameter);
         LoadedFile loadedFile = new LoadedFile();
-        loadedFile.setFileLink("https://testnet.gateway.proximax.io/xpxfs/" + result.getNemHash());
+        //loadedFile.setFileLink("https://testnet.gateway.proximax.io/xpxfs/" + result.getNemHash());
         loadedFile.setFileName(e.getFile().getFileName());
+        loadedFile.setHash(result.getNemHash());
         loadedFile.setNemLink("http://104.128.226.60:7890/transaction/get?hash=" + result.getNemHash());
         this.listOfFiles.add(loadedFile);
         this.linkToFile = result.getNemHash();
@@ -88,6 +119,8 @@ public class ProximaXFileUploadWithPasswordBean {
         private String fileName;
         private String fileLink;
         private String nemLink;
+        private String hash;
+        private boolean isConfirmed;
 
         /**
          * @return the fileName
@@ -129,6 +162,34 @@ public class ProximaXFileUploadWithPasswordBean {
          */
         public void setNemLink(String nemLink) {
             this.nemLink = nemLink;
+        }
+
+        /**
+         * @return the hash
+         */
+        public String getHash() {
+            return hash;
+        }
+
+        /**
+         * @param hash the hash to set
+         */
+        public void setHash(String hash) {
+            this.hash = hash;
+        }
+
+        /**
+         * @return the isConfirmed
+         */
+        public boolean getIsConfirmed() {
+            return isConfirmed;
+        }
+
+        /**
+         * @param isConfirmed the isConfirmed to set
+         */
+        public void setIsConfirmed(boolean isConfirmed) {
+            this.isConfirmed = isConfirmed;
         }
 
     }

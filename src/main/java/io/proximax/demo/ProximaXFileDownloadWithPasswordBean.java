@@ -45,26 +45,30 @@ public class ProximaXFileDownloadWithPasswordBean {
     private String hash;
 
 
-    public String downloadFile() throws DownloadException,IOException {
+    
+    public void downloadFile() {
 
-        Download download = new Download(new RemotePeerConnection("https://testnet.gateway.proximax.io"));
-        DownloadResult result = download.downloadBinary(DownloadParameter.create().nemHash(this.getHash()).securedWithPasswordPrivacyStrategy(this.password).build());
-            
-        final FacesContext fc = FacesContext.getCurrentInstance();
-        final ExternalContext externalContext = fc.getExternalContext();
-        externalContext.responseReset();
-        externalContext.setResponseContentType(result.getDataMessage().type());
-        externalContext.setResponseHeader("Content-Disposition", "attachment;filename=" + result.getDataMessage().name());
-        
-        final HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
-        final ServletOutputStream out = response.getOutputStream();
-        
-        out.write(result.getData());
-        out.flush();
-        fc.responseComplete();
-        
-        return null;
+            try {
+                Download download = new Download(new RemotePeerConnection("https://testnet.gateway.proximax.io"));
+                DownloadResult result = download.downloadBinary(DownloadParameter.create().nemHash(this.getHash()).securedWithPasswordPrivacyStrategy(this.password).build());
 
+                final FacesContext fc = FacesContext.getCurrentInstance();
+                final ExternalContext externalContext = fc.getExternalContext();
+                externalContext.responseReset();
+                externalContext.setResponseContentType(result.getDataMessage().type());
+                externalContext.setResponseHeader("Content-Disposition", "attachment;filename=" + result.getDataMessage().name());
+
+                final HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
+                final ServletOutputStream out = response.getOutputStream();
+
+                out.write(result.getData());
+                out.flush();
+                fc.responseComplete();
+
+        }catch(Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Failed to download: Make sure that Hash/Password is correct and the NEM Transaction has been confirmed."));
+        }
+       
     }
 
     /**

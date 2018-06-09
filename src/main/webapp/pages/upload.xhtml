@@ -2,7 +2,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:body>
         <ui:composition template="/template/common.xhtml">
@@ -22,28 +23,34 @@
                            <p:growl id="msg"  sticky="true"  ></p:growl>
                            <p:fileUpload value="#{fileUploadBean.file}" skinSimple="true"
                                                            mode="advanced" multiple="true"
-                                                           sizeLimit="100000000" auto="true"
+                                                           sizeLimit="100000000"
                                                            fileUploadListener="#{fileUploadBean.fileUploadListener}" 
                                                            update="tb" dragDropSupport="true">
 
                            </p:fileUpload>
 
-                       </h:form>
+                      
                     <br/>
                     <p:outputLabel style="color:black;"><b>Please wait for the NEM Transaction to be confirmed.</b></p:outputLabel>  
                     <p:dataTable id="tb" var="file" value="#{fileUploadBean.listOfFiles}">
                           <p:column headerText="Filename">
                               <h:outputText value="#{file.fileName}" />
                           </p:column>
-                          <p:column headerText="Link to ProximaX Gateway">
-                              <a href="#{file.fileLink}" target="_blank">#{file.fileLink}</a>
+                         <p:column headerText="Hash">
+                             <h:outputLabel value="#{file.hash}" />
+                          </p:column>
+                        <p:column headerText="Link to File" id="confirming">
+                            <h:outputLabel id="confirmed"  >
+                                <h:outputLabel value="Confirming...." rendered="#{file.isConfirmed eq false}" />
+                                <a href="#{file.fileLink}" target="_blank">#{file.fileLink}</a>
+                            </h:outputLabel>
+                            <p:poll id="fileUploadBeanPoll" interval="15" update="confirmed" listener="#{fileUploadBean.check(file.hash)}" autoStart="true" />
                           </p:column>
                          <p:column headerText="Link to NEM Txn">
                              <a href="#{file.nemLink}" target="_blank">#{file.nemLink}</a>
-
                           </p:column>
                       </p:dataTable>
-
+                        </h:form>
                      </p:fieldset>
                 </ui:define>
             </ui:composition>

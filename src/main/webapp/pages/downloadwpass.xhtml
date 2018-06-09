@@ -16,7 +16,7 @@
                    <p:outputLabel style="color:red;">You can use this page to download a password protected file that was uploaded to ProximaX.</p:outputLabel>  
                    <br/>
                    </h:panelGrid>
-
+                    <p:growl id="msg"></p:growl>
                        <h:form  style="width:100%;">
                            <p:outputLabel>Hash </p:outputLabel>
                            <p:inputText value="#{fileDownloadWithPasswordBean.hash}" required="true" maxlength="100" style="width:30%;"></p:inputText>
@@ -26,7 +26,7 @@
                            <p:inputText value="#{fileDownloadWithPasswordBean.password}" required="true" maxlength="100" style="width:30%;"></p:inputText>
                            <br/>
                            <br/>
-                           <p:commandButton ajax="false" actionListener="#{fileDownloadWithPasswordBean.downloadFile()}" value="Download"></p:commandButton>
+                           <p:commandButton ajax="false" update="msg" actionListener="#{fileDownloadWithPasswordBean.downloadFile()}" value="Download"></p:commandButton>
                        </h:form>
                     <br/>
 

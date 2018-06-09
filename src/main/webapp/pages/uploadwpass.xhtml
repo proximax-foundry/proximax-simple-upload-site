@@ -30,22 +30,30 @@
                            <br/>
                            <p:outputLabel>Password: </p:outputLabel>
                            <p:inputText value="#{fileUploadWithPasswordBean.password}" required="true" maxlength="100" style="width:100%;"></p:inputText>
-                       </h:form>
+                       
+                    <br/>
                     <br/>
                     <p:outputLabel style="color:black;"><b>Please wait for the NEM Transaction to be confirmed.</b></p:outputLabel>  
                     <p:dataTable id="tb" var="file" value="#{fileUploadWithPasswordBean.listOfFiles}">
                           <p:column headerText="Filename">
                               <h:outputText value="#{file.fileName}" />
                           </p:column>
+                                   <p:column headerText="Hash">
+                             <h:outputLabel value="#{file.hash}" />
+                          </p:column>
                           <p:column headerText="Link to ProximaX Gateway">
-                              <a href="#{file.fileLink}" target="_blank">#{file.fileLink}</a>
+                              <h:outputFormat id="confirmed">
+                                <h:outputLabel value="Confirming...." rendered="#{file.isConfirmed eq false}" />
+                                <a href="#{file.fileLink}" target="_blank">#{file.fileLink}</a>
+                            </h:outputFormat>
+                             <p:poll id="fileUploadBeanPoll" interval="15" update="confirmed" listener="#{fileUploadWithPasswordBean.check(file.hash)}" autoStart="true" />
                           </p:column>
                          <p:column headerText="Link to NEM Txn">
                              <a href="#{file.nemLink}" target="_blank">#{file.nemLink}</a>
-
                           </p:column>
+  
                       </p:dataTable>
-
+</h:form>
                      </p:fieldset>
                 
             </ui:define>
