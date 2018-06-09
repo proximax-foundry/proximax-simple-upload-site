@@ -11,7 +11,6 @@
                 <br/>
                 <p:fieldset legend="Public Upload" style="margin-bottom:20px">
                    <h:panelGrid columns="2" cellpadding="5">
-                       <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
                        <p:outputLabel>NEM Testnet Public Key used: 36e6fbc1cc5c3ef49d313721650b98d7d7d126a4f731d70071f4f3b4798cdc85</p:outputLabel>
                    <br/>
                    <p:outputLabel style="color:red;">All files uploaded here will be shared across the ProximaX/IPFS public network. Your files will not be removed in anyway.</p:outputLabel>  
@@ -23,7 +22,7 @@
                            <p:growl id="msg"  sticky="true"  ></p:growl>
                            <p:fileUpload value="#{fileUploadBean.file}" skinSimple="true"
                                                            mode="advanced" multiple="true"
-                                                           sizeLimit="100000000"
+                                                           sizeLimit="10000000"
                                                            fileUploadListener="#{fileUploadBean.fileUploadListener}" 
                                                            update="tb" dragDropSupport="true">
 

@@ -10,12 +10,10 @@
                 <br/>
                 <p:fieldset legend="Upload with Password" style="margin-bottom:20px">
                    <h:panelGrid columns="2" cellpadding="5">
-                       <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
                        <p:outputLabel>NEM Testnet Public Key used: 36e6fbc1cc5c3ef49d313721650b98d7d7d126a4f731d70071f4f3b4798cdc85</p:outputLabel>
                    <br/>
                    <p:outputLabel style="color:red;">All files uploaded here will be shared across the ProximaX/IPFS public network but will be protected with a password of your choice. ProximaX does not store or record/store your assigned password. Your files will not be removed in anyway.</p:outputLabel>  
                    <br/>
-                   <p:outputLabel style="color:black;"><b>To access the file, do a POST request passing the base64 encoded string of your password at: https://testnet.gateway.proximax.io/xpxfs/{nemHash}.</b></p:outputLabel>  
                    </h:panelGrid>
 
                        <h:form enctype="multipart/form-data" style="width:100%;">
@@ -42,10 +40,10 @@
                              <h:outputLabel value="#{file.hash}" />
                           </p:column>
                           <p:column headerText="Link to ProximaX Gateway">
-                              <h:outputFormat id="confirmed">
+                              <h:outputLabel id="confirmed"  >
                                 <h:outputLabel value="Confirming...." rendered="#{file.isConfirmed eq false}" />
                                 <a href="#{file.fileLink}" target="_blank">#{file.fileLink}</a>
-                            </h:outputFormat>
+                            </h:outputLabel>
                              <p:poll id="fileUploadBeanPoll" interval="15" update="confirmed" listener="#{fileUploadWithPasswordBean.check(file.hash)}" autoStart="true" />
                           </p:column>
                          <p:column headerText="Link to NEM Txn">
