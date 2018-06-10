@@ -39,6 +39,7 @@ public class ProximaXFileUploadWithPasswordBean {
     private List<LoadedFile> listOfFiles = new ArrayList<LoadedFile>();
     private String linkToFile;
     private String password;
+    private String node;
 
     public UploadedFile getFile() {
         return file;
@@ -62,7 +63,7 @@ public class ProximaXFileUploadWithPasswordBean {
                     if(this.listOfFiles.get(i).getHash().toLowerCase().equals(hash.toLowerCase())) {
                         System.out.println(this.listOfFiles.get(i).getHash());
                         this.listOfFiles.get(i).setIsConfirmed(true);
-                        this.listOfFiles.get(i).setFileLink("https://testnet.gateway.proximax.io/xpxfs/"+hash);
+                        this.listOfFiles.get(i).setFileLink(this.listOfFiles.get(i).getNetwork()+"/xpxfs/"+hash);
                         return;
                     }
                 }
@@ -74,7 +75,7 @@ public class ProximaXFileUploadWithPasswordBean {
         
     }
     public void fileUploadListener(FileUploadEvent e) throws UploadException {
-        Upload upload = new Upload(new RemotePeerConnection("https://testnet.gateway.proximax.io"));
+        Upload upload = new Upload(new RemotePeerConnection(this.node));
 
         // Get uploaded file from the FileUploadEvent
         this.setFile(e.getFile());
@@ -92,6 +93,7 @@ public class ProximaXFileUploadWithPasswordBean {
         LoadedFile loadedFile = new LoadedFile();
         //loadedFile.setFileLink("https://testnet.gateway.proximax.io/xpxfs/" + result.getNemHash());
         loadedFile.setFileName(e.getFile().getFileName());
+        loadedFile.setNetwork(this.node);
         loadedFile.setHash(result.getNemHash());
         loadedFile.setNemLink("http://104.128.226.60:7890/transaction/get?hash=" + result.getNemHash());
         this.listOfFiles.add(loadedFile);
@@ -116,9 +118,25 @@ public class ProximaXFileUploadWithPasswordBean {
 
     public class LoadedFile {
 
+        /**
+         * @return the network
+         */
+        public String getNetwork() {
+            return network;
+        }
+
+        /**
+         * @param network the network to set
+         */
+        public void setNetwork(String network) {
+            this.network = network;
+        }
+
         private String fileName;
         private String fileLink;
         private String nemLink;
+        private String network;
+        
         private String hash;
         private boolean isConfirmed;
 
@@ -237,5 +255,19 @@ public class ProximaXFileUploadWithPasswordBean {
         }
         String output = sb.toString();
         return output;
+    }
+
+    /**
+     * @return the node
+     */
+    public String getNode() {
+        return node;
+    }
+
+    /**
+     * @param node the node to set
+     */
+    public void setNode(String node) {
+        this.node = node;
     }
 }

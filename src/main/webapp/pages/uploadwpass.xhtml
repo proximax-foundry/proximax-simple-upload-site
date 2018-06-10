@@ -16,8 +16,16 @@
                    <br/>
                    </h:panelGrid>
 
-                       <h:form enctype="multipart/form-data" style="width:100%;">
-                           <p:growl id="msg"  sticky="true"  ></p:growl>
+                       <h:form enctype="multipart/form-data" style="width:100%;" id="form1">
+                           <p:outputLabel for="console" value="Choose P2P Node:" />
+                            <p:selectOneMenu id="console" value="#{fileUploadWithPasswordBean.node}" >
+                                <f:selectItem itemLabel="Test Network" itemValue="https://testnet.gateway.proximax.io/" />
+                                <f:selectItem itemLabel="Test Network 1" itemValue="https://testnet1.gateway.proximax.io/" />
+                                <f:selectItem itemLabel="Test Network 2" itemValue="https://testnet2.gateway.proximax.io/" />
+                                <p:ajax update="form1" />
+                            </p:selectOneMenu>
+                           <br/>
+                           <br/>
                            <p:fileUpload value="#{fileUploadWithPasswordBean.file}" skinSimple="true"
                                                            mode="advanced" multiple="true"
                                                            sizeLimit="10000000"

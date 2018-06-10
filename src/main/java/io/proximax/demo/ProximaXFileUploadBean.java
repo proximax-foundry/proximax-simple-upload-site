@@ -25,6 +25,7 @@ import org.primefaces.model.UploadedFile;
 public class ProximaXFileUploadBean {
 
     private UploadedFile file;
+    private String node;
 
     private List<LoadedFile> listOfFiles = new ArrayList<LoadedFile>();
     private String linkToFile;
@@ -50,7 +51,7 @@ public class ProximaXFileUploadBean {
                     if(this.listOfFiles.get(i).hash.toLowerCase().equals(hash.toLowerCase())) {
                         System.out.println(this.listOfFiles.get(i).hash);
                         this.listOfFiles.get(i).setIsConfirmed(true);
-                        this.listOfFiles.get(i).setFileLink("https://testnet.gateway.proximax.io/xpxfs/"+hash);
+                        this.listOfFiles.get(i).setFileLink(this.listOfFiles.get(i).getNetwork()+"/xpxfs/"+hash);
                         return;
                     }
                 }
@@ -62,7 +63,7 @@ public class ProximaXFileUploadBean {
         
     }
     public void fileUploadListener(FileUploadEvent e) throws UploadException {
-        Upload upload = new Upload(new RemotePeerConnection("https://testnet.gateway.proximax.io"));
+        Upload upload = new Upload(new RemotePeerConnection(this.node));
 
         // Get uploaded file from the FileUploadEvent
         this.setFile(e.getFile());
@@ -81,6 +82,7 @@ public class ProximaXFileUploadBean {
         //loadedFile.setFileLink("https://testnet.gateway.proximax.io/xpxfs/" + result.getNemHash());
         //loadedFile.setFileLink("#confirming.....");
         loadedFile.setFileName(e.getFile().getFileName());
+        loadedFile.setNetwork(this.node);
         loadedFile.setNemLink("http://104.128.226.60:7890/transaction/get?hash=" + result.getNemHash());
         loadedFile.setHash(result.getNemHash());
         this.listOfFiles.add(loadedFile);
@@ -109,6 +111,7 @@ public class ProximaXFileUploadBean {
         private String fileLink;
         private String nemLink;
         private String hash;
+        private String network;
         private boolean isConfirmed = false;
 
         /**
@@ -181,6 +184,20 @@ public class ProximaXFileUploadBean {
             this.isConfirmed = isConfirmed;
         }
 
+        /**
+         * @return the network
+         */
+        public String getNetwork() {
+            return network;
+        }
+
+        /**
+         * @param network the network to set
+         */
+        public void setNetwork(String network) {
+            this.network = network;
+        }
+
     }
 
     /**
@@ -195,5 +212,19 @@ public class ProximaXFileUploadBean {
      */
     public void setLinkToFile(String linkToFile) {
         this.linkToFile = linkToFile;
+    }
+
+    /**
+     * @return the node
+     */
+    public String getNode() {
+        return node;
+    }
+
+    /**
+     * @param node the node to set
+     */
+    public void setNode(String node) {
+        this.node = node;
     }
 }

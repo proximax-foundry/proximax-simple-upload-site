@@ -15,7 +15,6 @@
                    <br/>
                    <p:outputLabel style="color:red;">This will search all the files associated to the public key above</p:outputLabel>  
                    <br/>
-                   
                    <h:form>
                        <p:growl id="growl" life="2000" />
                        <h:inputText value="#{searchBean.name}"></h:inputText>
@@ -23,8 +22,6 @@
                    </h:form>
                    </h:panelGrid>
                  </p:fieldset>
-                
-                
                 <p:dataTable id="tbres" var="result" value="#{searchBean.result}">
                     <p:column headerText="Name">
                         <h:outputText value="#{result.name}" />

@@ -43,13 +43,14 @@ public class ProximaXFileDownloadWithPasswordBean {
 
     private String password;
     private String hash;
+    private String node;
 
 
     
     public void downloadFile() {
 
             try {
-                Download download = new Download(new RemotePeerConnection("https://testnet.gateway.proximax.io"));
+                Download download = new Download(new RemotePeerConnection(this.node));
                 DownloadResult result = download.downloadBinary(DownloadParameter.create().nemHash(this.getHash()).securedWithPasswordPrivacyStrategy(this.password).build());
 
                 final FacesContext fc = FacesContext.getCurrentInstance();
@@ -97,6 +98,20 @@ public class ProximaXFileDownloadWithPasswordBean {
      */
     public void setHash(String hash) {
         this.hash = hash;
+    }
+
+    /**
+     * @return the node
+     */
+    public String getNode() {
+        return node;
+    }
+
+    /**
+     * @param node the node to set
+     */
+    public void setNode(String node) {
+        this.node = node;
     }
     
     
