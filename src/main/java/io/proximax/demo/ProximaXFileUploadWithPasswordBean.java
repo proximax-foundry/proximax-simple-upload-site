@@ -39,7 +39,7 @@ public class ProximaXFileUploadWithPasswordBean {
     private List<LoadedFile> listOfFiles = new ArrayList<LoadedFile>();
     private String linkToFile;
     private String password;
-    private String node;
+    private String node = "https://testnet.gateway.proximax.io/";
 
     public UploadedFile getFile() {
         return file;

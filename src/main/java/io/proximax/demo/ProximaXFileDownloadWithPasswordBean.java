@@ -6,8 +6,6 @@ import io.nem.xpx.facade.download.DownloadException;
 import io.nem.xpx.facade.download.DownloadParameter;
 import io.nem.xpx.facade.download.DownloadResult;
 import io.nem.xpx.facade.upload.Upload;
-import io.nem.xpx.facade.upload.UploadBinaryParameter;
-import io.nem.xpx.facade.upload.UploadException;
 import io.nem.xpx.facade.upload.UploadResult;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +41,7 @@ public class ProximaXFileDownloadWithPasswordBean {
 
     private String password;
     private String hash;
-    private String node;
+    private String node = "https://testnet.gateway.proximax.io/";
 
 
     

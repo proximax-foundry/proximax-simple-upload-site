@@ -19,8 +19,8 @@
                     <p:growl id="msg"></p:growl>
                        <h:form  style="width:100%;" id="form1">
                            <p:outputLabel for="console" value="Choose P2P Node:" />
-                            <p:selectOneMenu id="console" value="#{fileUploadBean.node}" >
-                                <f:selectItem itemLabel="Test Network" itemValue="https://testnet.gateway.proximax.io/" />
+                            <p:selectOneMenu id="console" value="#{fileDownloadWithPasswordBean.node}" >
+                                <f:selectItem itemLabel="Test Network"  itemValue="https://testnet.gateway.proximax.io/" />
                                 <f:selectItem itemLabel="Test Network 1" itemValue="https://testnet1.gateway.proximax.io/" />
                                 <f:selectItem itemLabel="Test Network 2" itemValue="https://testnet2.gateway.proximax.io/" />
                                 <p:ajax update="form1" />

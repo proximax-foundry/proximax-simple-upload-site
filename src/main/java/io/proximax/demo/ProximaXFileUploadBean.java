@@ -25,7 +25,7 @@ import org.primefaces.model.UploadedFile;
 public class ProximaXFileUploadBean {
 
     private UploadedFile file;
-    private String node;
+    private String node = "https://testnet.gateway.proximax.io/";
 
     private List<LoadedFile> listOfFiles = new ArrayList<LoadedFile>();
     private String linkToFile;

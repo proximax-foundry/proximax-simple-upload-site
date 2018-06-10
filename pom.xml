@@ -56,8 +56,8 @@
                 
                 <dependency>
                     <groupId>io.nem.xpx</groupId>
-	<artifactId>xpx-java-sdk</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+                        <artifactId>xpx-java-sdk</artifactId>
+                        <version>0.1.0-beta.1-SNAPSHOT</version>
                 </dependency>
 	</dependencies>
 </project>
