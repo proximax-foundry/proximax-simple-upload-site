@@ -5,17 +5,16 @@
  */
 package io.proximax.demo;
 
-import io.nem.xpx.exceptions.ApiException;
-import io.nem.xpx.facade.connection.RemotePeerConnection;
-import io.nem.xpx.facade.search.Search;
-import io.nem.xpx.model.ResourceHashMessageJsonEntity;
+import io.proximax.xpx.exceptions.ApiException;
+import io.proximax.xpx.facade.connection.RemotePeerConnection;
+import io.proximax.xpx.facade.search.Search;
+import io.proximax.xpx.model.ResourceHashMessageJsonEntity;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
