@@ -1,27 +1,17 @@
 package io.proximax.demo;
 
-import io.nem.xpx.facade.connection.RemotePeerConnection;
-import io.nem.xpx.facade.download.Download;
-import io.nem.xpx.facade.download.DownloadException;
-import io.nem.xpx.facade.download.DownloadParameter;
-import io.nem.xpx.facade.download.DownloadResult;
-import io.nem.xpx.facade.upload.Upload;
-import io.nem.xpx.facade.upload.UploadResult;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import io.proximax.xpx.facade.connection.RemotePeerConnection;
+import io.proximax.xpx.facade.download.Download;
+import io.proximax.xpx.facade.download.DownloadParameter;
+import io.proximax.xpx.facade.download.DownloadResult;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

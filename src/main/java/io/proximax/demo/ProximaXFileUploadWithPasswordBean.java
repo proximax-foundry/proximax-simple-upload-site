@@ -1,25 +1,24 @@
 package io.proximax.demo;
 
-import io.nem.xpx.facade.connection.RemotePeerConnection;
-import io.nem.xpx.facade.upload.Upload;
-import io.nem.xpx.facade.upload.UploadBinaryParameter;
-import io.nem.xpx.facade.upload.UploadException;
-import io.nem.xpx.facade.upload.UploadResult;
+import io.proximax.xpx.facade.connection.RemotePeerConnection;
+import io.proximax.xpx.facade.upload.Upload;
+import io.proximax.xpx.facade.upload.UploadBinaryParameter;
+import io.proximax.xpx.facade.upload.UploadException;
+import io.proximax.xpx.facade.upload.UploadResult;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
